@@ -333,6 +333,15 @@ RUN chown -R jovyan:users /home/jovyan
 USER jovyan
 RUN cd /opt/pulsar && git clone https://github.com/PuMA-Coll/PuMA.git puma
 
+USER jovyan
+RUN git clone https://github.com/gui-iar/puma-call.git config_files && \
+    cd config_files && \
+    tar -zxvf par_files.tar.gz && \
+    tar -zxvf ini_files.tar.gz && \
+    mv ini_files/* /opt/pulsar/puma/config/ && \
+    mkdir /opt/pulsar/puma/pardir/ && \
+    mv par_files/* /opt/pulsar/puma/pardir/     
+
 
 USER root
 WORKDIR /home/jovyan/work
