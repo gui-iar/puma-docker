@@ -309,6 +309,15 @@ RUN bash -c "source /opt/conda/bin/activate python2 && \
     cythonize -i sps/src/C_Funct.pyx"
 
 
+#install RFIClean
+USER jovyan
+RUN bash -c "source /opt/conda/bin/activate python2 && \
+    git clone https://github.com/gui-iar/RFIClean.git && \
+    cd RFIClean/ && \
+    make && \
+    make install"
+    
+    
 # this also fails because of PINT
 #USER jovyan
 #RUN  git clone https://github.com/nanograv/enterprise && \
